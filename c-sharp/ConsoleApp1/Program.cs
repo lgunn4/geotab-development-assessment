@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace JokeGenerator
 {
-    static class Program
+    internal static class Program
     {
         private static string[] categories;
 
@@ -15,20 +15,25 @@ namespace JokeGenerator
         private const ConsoleColor InputTextColor = ConsoleColor.White;
         private const ConsoleColor PromptTextColor = ConsoleColor.Red;
         private const ConsoleColor InformationTextColor = ConsoleColor.Yellow;
-
         
         public static void Main(string[] args)
         {
-            InitializeCategories();
-            ConsoleMenu.setInputTextColor(InputTextColor);
-            ConsoleMenu.setPromptTextColor(PromptTextColor);
-            ConsoleMenu.setInformationTextColor(InformationTextColor);
+            
+            // Initializing category list and setting ConsoleColor for ConsoleMenu
+            CategoryService.InitializeCategories();
+            ConsoleMenu.SetInputTextColor(InputTextColor);
+            ConsoleMenu.SetPromptTextColor(PromptTextColor);
+            ConsoleMenu.SetInformationTextColor(InformationTextColor);
 
             var mainMenuOption = "";
+            
+            // Loops until User Quits
             while (!mainMenuOption.Equals(QuitOption))
             {
                 switch (mainMenuOption)
                 {
+                    
+                    // User chooses to see list of all categories
                     case CategoryOption:
                         var categoryList = "Categories: ";
                         foreach (var category in categories)
@@ -40,23 +45,30 @@ namespace JokeGenerator
                         ConsoleMenu.PrintInformation(categoryList);
                         break;
                     
+                    // User chooses to get Random Jokes
                     case RandomOption:
                     {
+                        
+                        // Joke constructor is chosen depending on User Input
                         Joke joke;
-                        if (ConsoleMenu.PrintBoolOption("Want to use a random name? y/n"))
+                        if (ConsoleMenu.PrintPromptReturnBoolOption("Want to use a random name? y/n"))
                         {
-                            joke = new Joke();
+                            var randomName = RandomNameService.GetRandomName();
+                            joke = new Joke(randomName.Item1, randomName.Item2);
                         }
                         else
                         {
-                            var firstName = ConsoleMenu.PrintOptionInput("Enter a first Name");
-                            var lastName = ConsoleMenu.PrintOptionInput("Enter a last Name");
+                            var firstName = ConsoleMenu.PrintPromptReturnLineInput("Enter a first Name");
+                            var lastName = ConsoleMenu.PrintPromptReturnLineInput("Enter a last Name");
                             
                             joke = new Joke(firstName, lastName);
                         }
-                        var numberOfJokes = ConsoleMenu.PrintIntOption("How many jokes do you want? (1-9)");
                         
-                        if (ConsoleMenu.PrintBoolOption("Want to specify a category? y/n"))
+                        // User is prompted for number of jokes
+                        var numberOfJokes = ConsoleMenu.PrintPromptReturnIntInput("How many jokes do you want? (1-9)");
+                        
+                        // User chooses to enter a category or not
+                        if (ConsoleMenu.PrintPromptReturnBoolOption("Want to specify a category? y/n"))
                         {
                             string category = ConsoleMenu.PrintOptionsInput("Enter a valid category or hit enter to skip", categories);
 
@@ -66,16 +78,19 @@ namespace JokeGenerator
                             }
                         }
 
+                        // Jokes are all displayed
                         for (var i = 0; i < numberOfJokes; i++)
                         {
-                            ConsoleMenu.PrintInformation(joke.GetJoke());
+                            ConsoleMenu.PrintInformation(JokeService.GetJokeText(joke));
                         }
 
                         ConsoleMenu.EmptyLine();
                         break;
                     }
                 }
-                mainMenuOption = ConsoleMenu.PrintOptions("Press c to get categories, Press r to get random jokes, Press q to quit", MainMenuOptions);
+                
+                // User is prompted for Menu Choice
+                mainMenuOption = ConsoleMenu.PrintPromptReturnOptionKeyInput("Press c to get categories, Press r to get random jokes, Press q to quit", MainMenuOptions);
             }
         }
 
