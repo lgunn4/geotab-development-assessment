@@ -8,6 +8,12 @@ namespace JokeGenerator
         private readonly string _firstName;
         private readonly string _lastName;
         private string _category;
+
+        public Joke()
+        {
+            _firstName = null;
+            _lastName = null;
+        }
         public Joke(string firstName, string lastName)
         {
             _firstName = firstName;

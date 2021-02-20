@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace JokeGenerator
+namespace JokeGenerator.Service
 {
     public class ApiService
     {
