@@ -14,12 +14,12 @@ namespace JokeGenerator
             _inputTextColor = inputTextColor;
         }
 
-        public static void setPromptTextColor(ConsoleColor promptTextColor)
+        public static void SetPromptTextColor(ConsoleColor promptTextColor)
         {
             _promptTextColor = promptTextColor;
         }
         
-        public static void setInformationTextColor(ConsoleColor informationTextColor)
+        public static void SetInformationTextColor(ConsoleColor informationTextColor)
         {
             _informationTextColor = informationTextColor;
         }
@@ -41,7 +41,7 @@ namespace JokeGenerator
             Print(displayText, _promptTextColor);
         }
 
-        private static string PrintOption(string displayText)
+        private static string PrintPromptReturnKeyInput(string displayText)
         {
             PrintPrompt(displayText);
             var enteredValue = Console.ReadKey().Key.ToString();
@@ -59,11 +59,11 @@ namespace JokeGenerator
             return enteredValue;
         }
 
-        public static string PrintOptions(string displayText, string[] options)
+        public static string PrintPromptReturnOptionKeyInput(string displayText, string[] options)
         {
             while (true)
             {
-                var enteredInput = PrintOption(displayText);
+                var enteredInput = PrintPromptReturnKeyInput(displayText);
                 if (options.Contains(enteredInput))
                 {
                     return enteredInput;
@@ -71,11 +71,11 @@ namespace JokeGenerator
             }
         }
         
-        public static string PrintOptionsInput(string displayText, string[] options)
+        public static string PrintPromptReturnOptionLineInput(string displayText, string[] options)
         {
             while (true)
             {
-                var enteredInput = PrintOptionInput(displayText);
+                var enteredInput = PrintPromptReturnLineInput(displayText);
                 if (string.Empty.Equals(enteredInput))
                 {
                     return enteredInput;
@@ -87,14 +87,14 @@ namespace JokeGenerator
             }
         }
 
-        public static bool PrintBoolOption(string displayText)
+        public static bool PrintPromptReturnBoolOption(string displayText)
         {
-            var option = PrintOptions(displayText, new[] {"Y", "N"});
+            var option = PrintPromptReturnOptionKeyInput(displayText, new[] {"Y", "N"});
 
             return option.Equals("Y");
         }
 
-        public static int PrintIntOption(string displayText)
+        public static int PrintPromptReturnIntInput(string displayText)
         {
             while (true)
             {
