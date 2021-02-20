@@ -5,21 +5,16 @@ using System.Threading.Tasks;
 
 namespace JokeGenerator.Service
 {
-    public class ApiService
+    public abstract class ApiService
     {
-        private readonly string _url;
+        protected string _url;
 
-        public ApiService(string url)
-        {
-            _url = url;
-        }
-
-        public string GetRequest()
+        protected string GetRequest()
         {
             return GetRequest(null);
         }
-        
-        public string GetRequest(Dictionary<string, string> parameters)
+
+        protected string GetRequest(Dictionary<string, string> parameters)
         {
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri(_url);

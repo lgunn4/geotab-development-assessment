@@ -4,12 +4,11 @@ using Newtonsoft.Json;
 
 namespace JokeGenerator.Service
 {
-    public class JokeApiService : IJokeApiService
-    {
-        private static ApiService _jokeApiService;
+    public class JokeApiService : ApiService, IJokeApiService
+    { 
         public JokeApiService(IConfiguration config)
         {
-            _jokeApiService = new ApiService(config.GetValue<string>("ApiUrls:Joke"));
+            _url = config.GetValue<string>("ApiUrls:Joke");
         }
         public string GetJokeText(Joke joke)
         {
@@ -18,11 +17,11 @@ namespace JokeGenerator.Service
             {
                 var categoryParameters = new Dictionary<string, string>();
                 categoryParameters.Add("category", joke.GetCategory());
-                jokeResult =  _jokeApiService.GetRequest(categoryParameters);
+                jokeResult =  GetRequest(categoryParameters);
             }
             else
             {
-                jokeResult = _jokeApiService.GetRequest();
+                jokeResult = GetRequest();
             }
             
             
