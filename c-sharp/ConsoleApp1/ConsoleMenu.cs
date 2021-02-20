@@ -5,20 +5,20 @@ namespace JokeGenerator
 {
     public static class ConsoleMenu
     {
-        public static string PrintOption(string value)
+        public static string PrintOption(string displayText)
         { 
-            Console.WriteLine(value);
+            Console.WriteLine(displayText);
             var enteredValue =  Console.ReadKey().Key.ToString();
             Console.WriteLine(Environment.NewLine);
 
             return enteredValue;
         }
 
-        public static string PrintOptions(string value, string[] options)
+        public static string PrintOptions(string displayText, string[] options)
         {
             while (true)
             {
-                var enteredInput = PrintOption(value);
+                var enteredInput = PrintOption(displayText);
                 if (options.Contains(enteredInput))
                 {
                     return enteredInput;
@@ -26,18 +26,20 @@ namespace JokeGenerator
             }
         }
 
-        public static bool PrintBoolOption(string value)
+        public static bool PrintBoolOption(string displayText)
         {
-            var option = PrintOptions(value, new[] {"Y", "N"});
+            var option = PrintOptions(displayText, new[] {"Y", "N"});
 
             return option.Equals("Y");
         }
 
-        public static int PrintIntOption(string value)
+        public static int PrintIntOption(string displayText)
         {
             while (true)
             {
-                var enteredInput = GetEnteredInt(PrintOption(value));
+                Console.WriteLine(displayText);
+                var enteredInput = GetEnteredInt(Console.ReadKey().KeyChar);
+                Console.WriteLine(Environment.NewLine);
                 if (enteredInput > 0)
                 {
                     return enteredInput;
@@ -45,11 +47,11 @@ namespace JokeGenerator
             }
         }
 
-        private static int GetEnteredInt(string enteredInput)
+        private static int GetEnteredInt(char enteredInput)
         {
-            if (char.IsDigit(char.Parse(enteredInput)))
+            if (char.IsDigit(enteredInput))
             {
-                return int.Parse(enteredInput);
+                return int.Parse(enteredInput.ToString());
             }
 
             return -1;
