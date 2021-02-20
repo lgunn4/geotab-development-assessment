@@ -10,7 +10,6 @@ namespace JokeGenerator.Service
 
         string PrintPromptReturnOptionLineInput(string displayText, string[] options);
 
-
         bool PrintPromptReturnBoolOption(string displayText);
 
         int PrintPromptReturnIntInput(string displayText);

@@ -65,13 +65,13 @@ namespace JokeGenerator.Service
                             joke.SetCategory(category);
                         }
                     }
-
+                    
+                    _consoleMenu.PrintInformation("Jokes: ");
                     for (var i = 0; i < numberOfJokes; i++)
                     {
                         _consoleMenu.PrintInformation(_jokeApiService.GetJokeText(joke));
+                        _consoleMenu.EmptyLine();
                     }
-
-                    _consoleMenu.EmptyLine();
                 }
 
                 mainMenuOption = _consoleMenu.PrintPromptReturnOptionKeyInput(_menuConfig.MainMenuPrompt, _menuConfig.MainMenuOptions);
