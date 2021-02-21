@@ -22,14 +22,22 @@ namespace JokeGenerator.Config
             CategoryOption = config.GetValue<string>("Inputs:Category");
             RandomJokeOption = config.GetValue<string>("Inputs:RandomJoke");
             QuitOption = config.GetValue<string>("Inputs:Quit");
-            MainMenuOptions =  new string[]{CategoryOption, RandomJokeOption, QuitOption};
+
+            if (CategoryOption != null && RandomJokeOption != null && QuitOption != null) 
+            {
+                MainMenuOptions =  new[]{CategoryOption, RandomJokeOption, QuitOption};
+            }
 
             InstructionsPrompt = config.GetValue<string>("Prompts:Instructions");
-            InstructionsChar = config.GetValue<string>("Inputs:Instructions").ToCharArray()[0];
             RandomNamePrompt = config.GetValue<string>("Prompts:RandomName");
             NumberOfJokesPrompt = config.GetValue<string>("Prompts:NumberOfJokes");
             SpecifyCategoryPrompt = config.GetValue<string>("Prompts:SpecifyCategory");
             CategoryInputPrompt = config.GetValue<string>("Prompts:CategoryInput");
+
+            if (config.GetValue<string>("Inputs:Instructions") != null) 
+            {
+                InstructionsChar = config.GetValue<string>("Inputs:Instructions").ToCharArray()[0];
+            }
         }
     }
     
