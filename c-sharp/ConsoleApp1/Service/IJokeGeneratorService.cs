@@ -1,4 +1,4 @@
-namespace JokeGenerator
+namespace JokeGenerator.Service
 {
     public interface IJokeGeneratorService
     { 

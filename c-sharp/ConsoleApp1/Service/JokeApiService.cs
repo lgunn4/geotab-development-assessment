@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using JokeGenerator.Domain;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 

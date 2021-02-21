@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Threading.Tasks;
+﻿using System.IO;
 using JokeGenerator.Config;
 using JokeGenerator.Service;
 using Microsoft.Extensions.Configuration;

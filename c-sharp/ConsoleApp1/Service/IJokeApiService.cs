@@ -1,3 +1,5 @@
+using JokeGenerator.Domain;
+
 namespace JokeGenerator.Service
 {
     public interface IJokeApiService

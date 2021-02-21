@@ -1,7 +1,4 @@
-using System.Collections.Generic;
-using Newtonsoft.Json;
-
-namespace JokeGenerator
+namespace JokeGenerator.Domain
 {
     public class Joke
     {

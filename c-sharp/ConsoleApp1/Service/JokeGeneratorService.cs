@@ -1,6 +1,5 @@
-using System;
 using JokeGenerator.Config;
-using Microsoft.Extensions.Configuration;
+using JokeGenerator.Domain;
 
 namespace JokeGenerator.Service
 {
