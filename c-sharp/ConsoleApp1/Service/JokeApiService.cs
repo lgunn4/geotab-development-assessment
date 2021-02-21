@@ -14,10 +14,10 @@ namespace JokeGenerator.Service
         public string GetJokeText(Joke joke)
         {
             var jokeResult = "";
-            if (joke.GetCategory() != null)
+            if (joke.Category != null)
             {
                 var categoryParameters = new Dictionary<string, string>();
-                categoryParameters.Add("category", joke.GetCategory());
+                categoryParameters.Add("category", joke.Category);
                 jokeResult =  GetRequest(categoryParameters);
             }
             else
@@ -28,10 +28,10 @@ namespace JokeGenerator.Service
             
             var jokeText = (string) JsonConvert.DeserializeObject<dynamic>(jokeResult).value;
 
-            if (joke.GetFirstName() != null && joke.GetLastName() != null)
+            if (joke.FirstName != null && joke.LastName != null)
             {
-                jokeText = jokeText.Replace("Chuck", joke.GetFirstName());
-                jokeText = jokeText.Replace("Norris", joke.GetLastName());
+                jokeText = jokeText.Replace("Chuck", joke.FirstName);
+                jokeText = jokeText.Replace("Norris", joke.LastName);
             }
 
             return jokeText;

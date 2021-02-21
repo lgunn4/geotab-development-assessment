@@ -61,7 +61,7 @@ namespace JokeGenerator.Service
 
                         if (!string.Empty.Equals(category))
                         {
-                            joke.SetCategory(category);
+                            joke.Category = category;
                         }
                     }
                     
