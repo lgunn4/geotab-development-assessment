@@ -6,9 +6,7 @@ namespace JokeGenerator.Domain
         public string LastName { get; }
         public string Category { get; set; }
 
-        public Joke()
-        {
-        }
+        public Joke() {}
         public Joke(string firstName, string lastName)
         {
             FirstName = firstName;
