@@ -13,6 +13,8 @@ namespace JokeGenerator.Config.Interface
         string NumberOfJokesPrompt { get; }
         string SpecifyCategoryPrompt { get; }
         string CategoryInputPrompt { get; }
+        string FNameInputPrompt { get; }
+        string LNameInputPrompt { get; }
         
     }
 }

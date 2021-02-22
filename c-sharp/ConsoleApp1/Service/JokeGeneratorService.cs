@@ -49,7 +49,10 @@ namespace JokeGenerator.Service
                     }
                     else
                     {
-                        joke = new Joke();
+                        var firstName = _consoleMenu.PrintPromptReturnLineInput(_menuConfig.FNameInputPrompt);
+                        var lastName = _consoleMenu.PrintPromptReturnLineInput(_menuConfig.LNameInputPrompt);
+
+                        joke = new Joke(firstName, lastName);
                     }
                         
                     var numberOfJokes = _consoleMenu.PrintPromptReturnIntInput(_menuConfig.NumberOfJokesPrompt);
