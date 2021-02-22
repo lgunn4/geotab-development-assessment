@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using JokeGenerator.Domain;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
@@ -7,9 +9,11 @@ namespace JokeGenerator.Service
 {
     public class JokeApiService : ApiService, IJokeApiService
     { 
-        public JokeApiService(IConfiguration config)
+        public JokeApiService(IHttpClientFactory httpClientFactory, IConfiguration config)
         {
-            _url = config.GetValue<string>("ApiUrls:Joke");
+            var url = config.GetValue<string>("ApiUrls:Joke");
+            HttpClient = httpClientFactory.CreateClient();
+            HttpClient.BaseAddress = new Uri(url);
         }
         public string GetJokeText(Joke joke)
         {

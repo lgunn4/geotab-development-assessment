@@ -1,3 +1,5 @@
+using System;
+using System.Net.Http;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 
@@ -5,9 +7,11 @@ namespace JokeGenerator.Service
 {
     public class CategoryApiService : ApiService, ICategoryApiService
     {
-        public CategoryApiService(IConfiguration config)
+        public CategoryApiService(IHttpClientFactory httpClientFactory, IConfiguration config)
         {
-            _url = config.GetValue<string>("ApiUrls:Category");
+            var url = config.GetValue<string>("ApiUrls:Category");
+            HttpClient = httpClientFactory.CreateClient();
+            HttpClient.BaseAddress = new Uri(url);
         }
 
 

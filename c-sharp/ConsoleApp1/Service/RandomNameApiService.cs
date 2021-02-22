@@ -1,4 +1,5 @@
 using System;
+using System.Net.Http;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 
@@ -6,9 +7,11 @@ namespace JokeGenerator.Service
 {
     public class RandomNameApiService : ApiService, IRandomNameApiService
     { 
-        public RandomNameApiService(IConfiguration config)
+        public RandomNameApiService(IHttpClientFactory httpClientFactory, IConfiguration config)
         {
-            _url = config.GetValue<string>("ApiUrls:RandomName");
+            var url = config.GetValue<string>("ApiUrls:RandomName");
+            HttpClient = httpClientFactory.CreateClient();
+            HttpClient.BaseAddress = new Uri(url);
         }
 
         public Tuple<string, string> GetRandomName()

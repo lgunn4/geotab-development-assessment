@@ -3,7 +3,9 @@ using JokeGenerator.Config;
 using JokeGenerator.Service;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Http;
 
 namespace JokeGenerator
 {
@@ -23,9 +25,10 @@ namespace JokeGenerator
                         .AddSingleton<IJokeApiService, JokeApiService>()
                         .AddSingleton<IRandomNameApiService, RandomNameApiService>()
                         .AddSingleton<IConsoleMenu, ConsoleMenu>()
-                        .AddSingleton<IMenuConfig, MenuConfig>();
+                        .AddSingleton<IMenuConfig, MenuConfig>()
+                        .AddHttpClient()
+                        .RemoveAll<IHttpMessageHandlerBuilderFilter>();
                 }).Build();
-            
             
             var svc = ActivatorUtilities.CreateInstance<JokeGeneratorService>(host.Services);
             svc.Run();
