@@ -1,4 +1,4 @@
-namespace JokeGenerator.Config
+namespace JokeGenerator.Config.Interface
 {
     public interface IMenuConfig
     { 

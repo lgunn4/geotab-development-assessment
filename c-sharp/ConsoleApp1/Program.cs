@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using JokeGenerator.Config;
+using JokeGenerator.Config.Interface;
 using JokeGenerator.Service;
 using JokeGenerator.Service.Interface;
 using Microsoft.Extensions.Configuration;
@@ -27,6 +28,7 @@ namespace JokeGenerator
                         .AddSingleton<IRandomNameApiService, RandomNameApiService>()
                         .AddSingleton<IConsoleMenu, ConsoleMenu>()
                         .AddSingleton<IMenuConfig, MenuConfig>()
+                        .AddSingleton<IApiConfig, ApiConfig>()
                         .AddHttpClient()
                         .RemoveAll<IHttpMessageHandlerBuilderFilter>();
                 }).Build();

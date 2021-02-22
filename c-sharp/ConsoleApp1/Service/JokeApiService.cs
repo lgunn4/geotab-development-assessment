@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using JokeGenerator.Config.Interface;
 using JokeGenerator.Domain;
 using JokeGenerator.Service.Interface;
 using Microsoft.Extensions.Configuration;
@@ -10,9 +11,9 @@ namespace JokeGenerator.Service
 {
     public class JokeApiService : ApiService, IJokeApiService
     { 
-        public JokeApiService(IHttpClientFactory httpClientFactory, IConfiguration config)
+        public JokeApiService(IHttpClientFactory httpClientFactory, IApiConfig apiConfig)
         {
-            var url = config.GetValue<string>("ApiUrls:Joke");
+            var url = apiConfig.JokeApiUrl;
             HttpClient = httpClientFactory.CreateClient();
             HttpClient.BaseAddress = new Uri(url);
         }

@@ -1,4 +1,4 @@
-using JokeGenerator.Config;
+using JokeGenerator.Config.Interface;
 using JokeGenerator.Domain;
 using JokeGenerator.Service.Interface;
 

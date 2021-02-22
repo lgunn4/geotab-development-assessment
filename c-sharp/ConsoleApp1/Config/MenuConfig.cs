@@ -1,3 +1,4 @@
+using JokeGenerator.Config.Interface;
 using Microsoft.Extensions.Configuration;
 
 namespace JokeGenerator.Config
