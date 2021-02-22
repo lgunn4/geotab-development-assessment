@@ -14,13 +14,13 @@ namespace JokeGeneratorTests
         public void CategoryApiServiceReturnsCategoriesFromHttpClientRequest()
         {
             string[] testCategories = {"test1", "test2", "test3"};
-            var json = JsonConvert.SerializeObject(testCategories);
-            var factory = HttpClientFactoryMocker.Mock(json);
-
-            var categoryApiService = new CategoryApiService(factory, ConfigurationInitializer.InitConfiguration());
+            var testJson = JsonConvert.SerializeObject(testCategories);
+            var factory = HttpClientFactoryMocker.Mock(testJson);
+            var config = ConfigurationInitializer.InitConfiguration();
+            var categoryApiService = new CategoryApiService(factory, config);
+            
             var returnedCategories = categoryApiService.GetCategories();
             Assert.AreEqual(testCategories.Length, returnedCategories.Length);
-            
             foreach (var category in returnedCategories)
             {
                 Assert.IsTrue(testCategories.Contains(category));
