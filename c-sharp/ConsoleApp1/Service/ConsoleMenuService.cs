@@ -55,7 +55,7 @@ namespace JokeGenerator.Service
             return enteredValue.KeyChar;
         }
 
-        public string PrintPromptReturnLineInput(string displayText)
+        private string PrintPromptReturnLineInput(string displayText)
         { 
             PrintPrompt(displayText);
             var enteredValue = Console.ReadLine();
