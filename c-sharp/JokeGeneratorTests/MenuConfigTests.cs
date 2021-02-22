@@ -1,6 +1,6 @@
-using System;
 using System.Collections.Generic;
 using JokeGenerator.Config;
+using JokeGeneratorTests.Utils;
 using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -9,15 +9,6 @@ namespace JokeGeneratorTests
     [TestClass]
     public class MenuConfigTest
     {
-        private static IConfiguration InitConfiguration()
-        {
-            var config = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.test.json")
-                .Build();
-
-            return config;
-        }
-        
         [TestMethod]
         public void PassingInEmptyConfigurationMakesAllValuesNull()
         {
@@ -42,7 +33,7 @@ namespace JokeGeneratorTests
         [TestMethod]
         public void PassingInConfigurationFileBuildsMenuConfig()
         {
-            var config = InitConfiguration();
+            var config = ConfigurationInitializer.InitConfiguration();
             var menuConfig = new MenuConfig(config);
 
             Assert.AreEqual("C", menuConfig.CategoryOption);
