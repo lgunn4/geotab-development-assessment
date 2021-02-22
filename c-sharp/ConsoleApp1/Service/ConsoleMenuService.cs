@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
+using JokeGenerator.Config.Interface;
 using JokeGenerator.Service.Interface;
-using Microsoft.Extensions.Configuration;
 
 namespace JokeGenerator.Service
 {
@@ -12,24 +12,11 @@ namespace JokeGenerator.Service
         private readonly ConsoleColor _promptTextColor;
         private readonly ConsoleColor _informationTextColor;
 
-        public ConsoleMenu(IConfiguration config)
+        public ConsoleMenu(IConsoleMenuConfig consoleMenuConfig)
         {
-            var tempInputColor = config.GetValue<string>("ConsoleColor:Input");
-            var tempPromptColor = config.GetValue<string>("ConsoleColor:Prompt");
-            var tempInformationColor = config.GetValue<string>("ConsoleColor:Information");
-
-            if (!Enum.TryParse(tempInputColor, out _inputTextColor))
-            {
-                _inputTextColor = Console.ForegroundColor;
-            }
-            if (!Enum.TryParse(tempPromptColor, out _promptTextColor))
-            {
-                _promptTextColor = Console.ForegroundColor;
-            }
-            if (!Enum.TryParse(tempInformationColor, out _informationTextColor))
-            {
-                _informationTextColor = Console.ForegroundColor;
-            }
+            _inputTextColor = consoleMenuConfig.InputTextColor;
+            _promptTextColor = consoleMenuConfig.PromptTextColor;
+            _informationTextColor = consoleMenuConfig.InformationTextColor;
         }
 
         private void Print(string displayText, ConsoleColor foregroundColor)

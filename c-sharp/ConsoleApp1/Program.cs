@@ -29,6 +29,7 @@ namespace JokeGenerator
                         .AddSingleton<IConsoleMenu, ConsoleMenu>()
                         .AddSingleton<IMenuConfig, MenuConfig>()
                         .AddSingleton<IApiConfig, ApiConfig>()
+                        .AddSingleton<IConsoleMenuConfig, ConsoleMenuConfig>()
                         .AddHttpClient()
                         .RemoveAll<IHttpMessageHandlerBuilderFilter>();
                 }).Build();
