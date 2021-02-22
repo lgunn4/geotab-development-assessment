@@ -1,5 +1,6 @@
 using JokeGenerator.Config;
 using JokeGenerator.Domain;
+using JokeGenerator.Service.Interface;
 
 namespace JokeGenerator.Service
 {

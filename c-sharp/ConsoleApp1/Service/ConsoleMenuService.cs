@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using JokeGenerator.Service.Interface;
 using Microsoft.Extensions.Configuration;
 
 namespace JokeGenerator.Service

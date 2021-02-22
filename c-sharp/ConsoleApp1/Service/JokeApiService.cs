@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using JokeGenerator.Domain;
+using JokeGenerator.Service.Interface;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 
