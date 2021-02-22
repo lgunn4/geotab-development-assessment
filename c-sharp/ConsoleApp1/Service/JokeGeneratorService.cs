@@ -31,7 +31,6 @@ namespace JokeGenerator.Service
             if (!_consoleMenu.PrintPromptReturnKeyCharInput(_menuConfig.InstructionsPrompt).Equals(_menuConfig.InstructionsChar)) return;
 
             var mainMenuOption = "";
-
             while (!mainMenuOption.Equals(_menuConfig.QuitOption))
             {
                 if (mainMenuOption.Equals(_menuConfig.CategoryOption))
@@ -70,8 +69,9 @@ namespace JokeGenerator.Service
                     for (var i = 0; i < numberOfJokes; i++)
                     {
                         _consoleMenu.PrintInformation(_jokeApiService.GetJokeText(joke));
-                        _consoleMenu.EmptyLine();
                     }
+                    _consoleMenu.EmptyLine();
+
                 }
 
                 mainMenuOption = _consoleMenu.PrintPromptReturnOptionKeyInput(_menuConfig.MainMenuPrompt, _menuConfig.MainMenuOptions);
