@@ -16,6 +16,8 @@ namespace JokeGenerator.Config
         public string NumberOfJokesPrompt { get; }
         public string SpecifyCategoryPrompt { get; }
         public string CategoryInputPrompt { get; }
+        public string FNameInputPrompt { get; }
+        public string LNameInputPrompt { get; }
 
         public MenuConfig(IConfiguration config)
         {
@@ -39,6 +41,9 @@ namespace JokeGenerator.Config
             {
                 InstructionsChar = config.GetValue<string>("Inputs:Instructions").ToCharArray()[0];
             }
+
+            FNameInputPrompt = config.GetValue<string>("Prompts:FNameInput");
+            LNameInputPrompt = config.GetValue<string>("Prompts:LNameInput");
         }
     }
     
