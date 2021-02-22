@@ -1,4 +1,5 @@
 using System;
+using JokeGenerator.Config;
 using JokeGenerator.Service;
 using JokeGeneratorTests.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -16,7 +17,7 @@ namespace JokeGeneratorTests
             var mockName = new Tuple<string, string>("John", "Doe");
 
             var factory = HttpClientFactoryMocker.Mock(mockResult);
-            var config = ConfigurationInitializer.InitConfiguration();
+            var config = new ApiConfig(ConfigurationInitializer.InitConfiguration());
             
             var randomNameApiService = new RandomNameApiService(factory, config);
             var name = randomNameApiService.GetRandomName();

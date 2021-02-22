@@ -1,3 +1,4 @@
+using JokeGenerator.Config;
 using JokeGenerator.Domain;
 using JokeGenerator.Service;
 using JokeGeneratorTests.Utils;
@@ -16,7 +17,7 @@ namespace JokeGeneratorTests
             var resultString = "{'value':'When Chuck Norris breathes there are hurricane warnings'}";
             var originalJoke = (string) JsonConvert.DeserializeObject<dynamic>(resultString).value;
 
-            var config = ConfigurationInitializer.InitConfiguration();
+            var config = new ApiConfig(ConfigurationInitializer.InitConfiguration());
             var factory = HttpClientFactoryMocker.Mock(resultString);
             var service = new JokeApiService(factory, config);
 
@@ -37,7 +38,7 @@ namespace JokeGeneratorTests
             var resultString = "{'value':'When Chuck Norris breathes there are hurricane warnings'}";
             var originalJoke = (string) JsonConvert.DeserializeObject<dynamic>(resultString).value;
 
-            var config = ConfigurationInitializer.InitConfiguration();
+            var config = new ApiConfig(ConfigurationInitializer.InitConfiguration());
             var factory = HttpClientFactoryMocker.Mock(resultString);
             var service = new JokeApiService(factory, config);
 
